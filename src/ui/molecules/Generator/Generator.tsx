@@ -11,7 +11,8 @@ export const Generator = () => {
 
   // ChangeEventHandler<HTMLButtonElement> = () => {
   // FormEvent
-  const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+    console.log(event);
     setId(uuidv4());
   };
 

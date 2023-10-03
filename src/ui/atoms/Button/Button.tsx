@@ -1,3 +1,7 @@
+import { CSSProperties } from "react";
+
+type SomeProperties = Pick<CSSProperties, "color" | "backgroundColor">;
+
 const colors = {
   emerald: "#2ecc71",
   amethyst: "#9b59b6",
