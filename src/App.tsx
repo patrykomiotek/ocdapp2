@@ -1,5 +1,6 @@
 import "./App.css";
 import { LoginForm } from "./components/LoginForm";
+import { LoginFormRefs } from "./components/LoginForm/LoginFormRefs";
 import { Button } from "./ui/atoms/Button";
 import { Text } from "./ui/atoms/Text";
 import { Generator } from "./ui/molecules/Generator";
@@ -11,7 +12,8 @@ function App() {
       {/* <Text>Today is payday</Text> */}
       {/* <Button label="Click" /> */}
       {/* <Generator /> */}
-      <LoginForm />
+      {/* <LoginForm /> */}
+      <LoginFormRefs />
     </div>
   );
 }
