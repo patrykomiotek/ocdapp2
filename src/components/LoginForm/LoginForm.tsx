@@ -3,6 +3,7 @@ import {
   Dispatch,
   FormEventHandler,
   SetStateAction,
+  useEffect,
   useState,
 } from "react";
 
@@ -10,6 +11,12 @@ export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [language, setLanguage] = useState("");
+
+  useEffect(() => {
+    if (language.toLowerCase().includes("php")) {
+      setLanguage("****");
+    }
+  }, [language]);
 
   const handleChange =
     (setter: Dispatch<SetStateAction<string>>) =>
@@ -24,7 +31,7 @@ export const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        E-mail: {email}, Password: {password}
+        E-mail: {email}, Password: {password}, Language: {language}
       </div>
       <div>
         <label htmlFor="email">E-mail</label>
@@ -40,7 +47,12 @@ export const LoginForm = () => {
       </div>
       <div>
         <label htmlFor="language">Language</label>
-        <input id="language" type="text" onChange={handleChange(setLanguage)} />
+        <input
+          id="language"
+          type="text"
+          onChange={handleChange(setLanguage)}
+          value={language}
+        />
       </div>
       <div>
         <button type="submit">Send</button>
