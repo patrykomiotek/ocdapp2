@@ -17,6 +17,7 @@ import { Counter } from "./components/Counter";
 import { AuthInfo } from "./components/Auth";
 import { AuthContext, AuthProvider } from "./components/Auth/AuthContext";
 import { ThemeProvider } from "./components/Theme/ThemeContext";
+import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
 
 function App() {
   const [showCounter, setShowCounter] = useState(true);
@@ -62,7 +63,9 @@ function App() {
         </AuthProvider>
       </ThemeProvider>
 
-      {/* <AuthInfo /> */}
+      <ErrorBoundary fallback={<p>Oh no!</p>}>
+        <AuthInfo />
+      </ErrorBoundary>
     </div>
   );
 }
