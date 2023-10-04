@@ -14,6 +14,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// TODO: this component needs wrapper to pass refs logic
 export const Primary: Story = {
   args: {},
 };
