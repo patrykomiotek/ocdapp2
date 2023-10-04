@@ -7,6 +7,7 @@ import { Generator } from "./ui/molecules/Generator";
 import { MagicButton } from "./ui/atoms/MagicButton";
 import { MouseEventHandler, useEffect, useRef } from "react";
 import { ViewPort } from "./components/ViewPort";
+import { Counter } from "./components/Counter";
 
 function App() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -39,7 +40,8 @@ function App() {
       {/* <Generator /> */}
       {/* <LoginForm /> */}
       {/* <LoginFormRefs /> */}
-      <ViewPort />
+      {/* <ViewPort /> */}
+      <Counter />
     </div>
   );
 }
