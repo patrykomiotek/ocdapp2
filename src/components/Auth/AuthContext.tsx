@@ -1,16 +1,22 @@
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useState,
+} from "react";
 
 interface Context {
   isLogged: boolean;
   toggleIsLogged: Dispatch<SetStateAction<boolean>>;
 }
 
-const contextDefaultValues = {
-  isLogged: false,
-  toggleIsLogged: () => null,
-};
+// const contextDefaultValues = {
+//   isLogged: false,
+//   toggleIsLogged: () => null,
+// };
 
-export const useAuth = () => {
+const useAuth = () => {
   const [isLogged, setIsLogged] = useState(false);
 
   const toggleIsLogged = () => setIsLogged((value) => !value);
@@ -20,4 +26,19 @@ export const useAuth = () => {
   return { isLogged, toggleIsLogged, logIn, logOut };
 };
 
-export const AuthContext = createContext<Context>(contextDefaultValues);
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const auth = useAuth();
+
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+};
+
+export const useAuthContext = () => {
+  const context = useContext(AuthContext);
+  console.log("inside useAuthContext", context);
+  if (!context) {
+    throw new Error("Oh no! You need to place component inside AuthProvider");
+  }
+  return context;
+};
+
+export const AuthContext = createContext<Context | null>(null);

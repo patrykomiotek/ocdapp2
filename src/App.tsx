@@ -5,16 +5,21 @@ import { Button } from "./ui/atoms/Button";
 import { Text } from "./ui/atoms/Text";
 import { Generator } from "./ui/molecules/Generator";
 import { MagicButton } from "./ui/atoms/MagicButton";
-import { MouseEventHandler, useEffect, useRef, useState } from "react";
+import {
+  MouseEventHandler,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { ViewPort } from "./components/ViewPort";
 import { Counter } from "./components/Counter";
 import { AuthInfo } from "./components/Auth";
-import { AuthContext } from "./components/Auth/AuthContext";
+import { AuthContext, AuthProvider } from "./components/Auth/AuthContext";
 
 function App() {
   const [showCounter, setShowCounter] = useState(true);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [authState, setAuthState] = useState(false);
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -50,14 +55,11 @@ function App() {
         Show / Hide
       </button> */}
       <h1>App component</h1>
-      <AuthContext.Provider
-        value={{
-          isLogged: authState,
-          toggleIsLogged: setAuthState,
-        }}
-      >
+      <AuthProvider>
         <AuthInfo />
-      </AuthContext.Provider>
+      </AuthProvider>
+
+      <AuthInfo />
     </div>
   );
 }
