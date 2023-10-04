@@ -1,6 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+interface ProductsDto {
+  id: string;
+  fields: {
+    name: string;
+    description: string;
+    price: number;
+  };
+}
+
+interface DataResponse {
+  records: ProductsDto[];
+}
 
 export const Products = () => {
+  const [products, setProducts] = useState<ProductsDto[]>([]);
+
   useEffect(() => {
     void fetch("https://api.airtable.com/v0/appJ0votvrhmT0Sbq/products", {
       headers: {
@@ -14,15 +29,20 @@ export const Products = () => {
         }
         throw new Error("Oh no!");
       })
-      .then((data) => {
+      .then((data: DataResponse) => {
         console.log(data);
+        setProducts(data.records);
       });
   }, []);
 
   return (
     <div>
       <h1>Products</h1>
-      {/* products */}
+      {products.map((elem) => (
+        <div key={elem.id}>
+          {elem.fields.name} {elem.fields.price}
+        </div>
+      ))}
     </div>
   );
 };
