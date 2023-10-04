@@ -4,10 +4,32 @@ const BASE_URL = "https://api.airtable.com/v0/appJ0votvrhmT0Sbq";
 const TOKEN =
   "Bearer patVQ864y6eGr1CkQ.760719abde62320306c65daff180b15fdc943d7cbf5301dc552175a39969fa4f";
 
+type ApiResponse<T> =
+  | {
+      // pending
+      data: undefined;
+      isLoading: true;
+      isError: false;
+    }
+  | {
+      // fulfilled
+      data: T;
+      isLoading: false;
+      isError: false;
+    }
+  | {
+      // rejected
+      data: undefined;
+      isLoading: false;
+      isError: true;
+    };
+
 export const useApi = <T>(endpoint: string) => {
-  const [data, setData] = useState<T | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [apiResponse, setApiResponse] = useState<ApiResponse<T>>({
+    data: undefined,
+    isLoading: true,
+    isError: false,
+  });
 
   useEffect(() => {
     void fetch(`${BASE_URL}${endpoint}`, {
@@ -20,20 +42,28 @@ export const useApi = <T>(endpoint: string) => {
         if (response.ok) {
           return response.json();
         }
-        setIsError(true);
+        setApiResponse({
+          data: undefined,
+          isLoading: false,
+          isError: true,
+        });
         throw new Error("Oh no!");
       })
       .then((data: T) => {
-        setData(data);
+        setApiResponse({
+          data: data,
+          isLoading: false,
+          isError: false,
+        });
       })
       .finally(() => {
-        setIsLoading(false);
+        // setApiResponse({
+        //   data: apiResponse.data as T,
+        //   isLoading: false,
+        //   isError: false,
+        // });
       });
   }, []);
 
-  return {
-    data,
-    isLoading,
-    isError,
-  };
+  return apiResponse;
 };
