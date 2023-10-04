@@ -18,6 +18,7 @@ import { AuthInfo } from "./components/Auth";
 import { AuthContext, AuthProvider } from "./components/Auth/AuthContext";
 import { ThemeProvider } from "./components/Theme/ThemeContext";
 import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
+import { Products } from "./components/Products";
 
 function App() {
   const [showCounter, setShowCounter] = useState(true);
@@ -57,7 +58,8 @@ function App() {
         Show / Hide
       </button> */}
       <h1>App component</h1>
-      <ThemeProvider>
+      <Products />
+      {/* <ThemeProvider>
         <AuthProvider>
           <AuthInfo />
         </AuthProvider>
@@ -65,7 +67,7 @@ function App() {
 
       <ErrorBoundary fallback={<p>Oh no!</p>}>
         <AuthInfo />
-      </ErrorBoundary>
+      </ErrorBoundary> */}
     </div>
   );
 }
