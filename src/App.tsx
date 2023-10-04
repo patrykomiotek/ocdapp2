@@ -49,6 +49,7 @@ function App() {
       <button onClick={() => setShowCounter((value) => !value)}>
         Show / Hide
       </button> */}
+      <h1>App component</h1>
       <AuthContext.Provider
         value={{
           isLogged: authState,

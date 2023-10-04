@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext } from "react";
+import { Dispatch, SetStateAction, createContext, useState } from "react";
 
 interface Context {
   isLogged: boolean;
@@ -8,6 +8,16 @@ interface Context {
 const contextDefaultValues = {
   isLogged: false,
   toggleIsLogged: () => null,
+};
+
+export const useAuth = () => {
+  const [isLogged, setIsLogged] = useState(false);
+
+  const toggleIsLogged = () => setIsLogged((value) => !value);
+  const logIn = () => setIsLogged(true);
+  const logOut = () => setIsLogged(false);
+
+  return { isLogged, toggleIsLogged, logIn, logOut };
 };
 
 export const AuthContext = createContext<Context>(contextDefaultValues);
