@@ -8,6 +8,8 @@ import { MagicButton } from "./ui/atoms/MagicButton";
 import { MouseEventHandler, useEffect, useRef, useState } from "react";
 import { ViewPort } from "./components/ViewPort";
 import { Counter } from "./components/Counter";
+import { AuthInfo } from "./components/Auth";
+import { AuthContext } from "./components/Auth/AuthContext";
 
 function App() {
   const [showCounter, setShowCounter] = useState(true);
@@ -42,10 +44,13 @@ function App() {
       {/* <LoginForm /> */}
       {/* <LoginFormRefs /> */}
       {/* <ViewPort /> */}
-      {showCounter ? <Counter /> : null}
+      {/* {showCounter ? <Counter /> : null}
       <button onClick={() => setShowCounter((value) => !value)}>
         Show / Hide
-      </button>
+      </button> */}
+      <AuthContext.Provider value={{ isLogged: false }}>
+        <AuthInfo />
+      </AuthContext.Provider>
     </div>
   );
 }
