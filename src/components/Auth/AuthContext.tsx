@@ -8,7 +8,9 @@ import {
 
 interface Context {
   isLogged: boolean;
-  toggleIsLogged: Dispatch<SetStateAction<boolean>>;
+  toggleIsLogged: () => void;
+  logIn: () => void;
+  logOut: () => void;
 }
 
 // const contextDefaultValues = {

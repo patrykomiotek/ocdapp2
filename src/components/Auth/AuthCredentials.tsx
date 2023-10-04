@@ -5,7 +5,7 @@ export const AuthCredentials = () => {
   const context = useAuthContext();
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
-    context.toggleIsLogged((value) => !value);
+    context.toggleIsLogged();
   };
 
   return (
