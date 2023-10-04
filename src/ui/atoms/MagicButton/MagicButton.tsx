@@ -18,4 +18,5 @@ export const MagicButton = forwardRef(
   }
 );
 
+// forwardRef, memo
 MagicButton.displayName = "forwardRef (MagicButton)";

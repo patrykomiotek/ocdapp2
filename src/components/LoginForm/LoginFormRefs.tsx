@@ -1,12 +1,5 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  FormEventHandler,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { FormEventHandler, useEffect, useRef } from "react";
+import { Input } from "../../ui/molecules/Input/Input";
 
 export const LoginFormRefs = () => {
   const emailFieldRef = useRef<HTMLInputElement>(null);
@@ -31,21 +24,13 @@ export const LoginFormRefs = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="email">E-mail</label>
-        <input id="email" type="email" ref={emailFieldRef} />
+        <Input label="E-mail" type="text" ref={emailFieldRef} />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
-        <input id="password" type="password" ref={passwordFieldRef} />
+        <Input label="Password" type="password" ref={passwordFieldRef} />
       </div>
       <div>
-        <label htmlFor="language">Language</label>
-        <input
-          id="language"
-          type="text"
-          ref={languageFieldRef}
-          defaultValue="java"
-        />
+        <Input label="Language" type="text" ref={languageFieldRef} />
       </div>
       <div>
         <button type="submit">Send</button>
