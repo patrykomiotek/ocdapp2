@@ -5,11 +5,12 @@ import { Button } from "./ui/atoms/Button";
 import { Text } from "./ui/atoms/Text";
 import { Generator } from "./ui/molecules/Generator";
 import { MagicButton } from "./ui/atoms/MagicButton";
-import { MouseEventHandler, useEffect, useRef } from "react";
+import { MouseEventHandler, useEffect, useRef, useState } from "react";
 import { ViewPort } from "./components/ViewPort";
 import { Counter } from "./components/Counter";
 
 function App() {
+  const [showCounter, setShowCounter] = useState(true);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -41,7 +42,10 @@ function App() {
       {/* <LoginForm /> */}
       {/* <LoginFormRefs /> */}
       {/* <ViewPort /> */}
-      <Counter />
+      {showCounter ? <Counter /> : null}
+      <button onClick={() => setShowCounter((value) => !value)}>
+        Show / Hide
+      </button>
     </div>
   );
 }

@@ -5,13 +5,16 @@ export const Counter = () => {
   let counterValue = 0;
 
   useEffect(() => {
+    // mount
+    console.log("MOUNT");
     const id = setInterval(() => {
       // setCount(count + 1);
-      // setCount((value) => value + 1);
-      counterValue++;
+      setCount((value) => value + 1);
+      // counterValue++;
     }, 1000);
 
     return () => {
+      console.log("UNMOUNT");
       clearInterval(id);
     };
   }, []);
