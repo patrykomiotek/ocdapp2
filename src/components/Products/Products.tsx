@@ -14,7 +14,9 @@ interface DataResponse {
 }
 
 export const Products = () => {
-  const [products, setProducts] = useState<ProductsDto[]>([]);
+  const [data, setData] = useState<ProductsDto[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     void fetch("https://api.airtable.com/v0/appJ0votvrhmT0Sbq/products", {
@@ -27,18 +29,25 @@ export const Products = () => {
         if (response.ok) {
           return response.json();
         }
+        setIsError(true);
         throw new Error("Oh no!");
       })
       .then((data: DataResponse) => {
         console.log(data);
-        setProducts(data.records);
+        setData(data.records);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
   return (
     <div>
       <h1>Products</h1>
-      {products.map((elem) => (
+      {isLoading && <p>Loading...</p>}
+      {isError && <p>Oh no!</p>}
+
+      {data.map((elem) => (
         <div key={elem.id}>
           {elem.fields.name} {elem.fields.price}
         </div>
