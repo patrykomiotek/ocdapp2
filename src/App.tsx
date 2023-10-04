@@ -59,7 +59,7 @@ function App() {
         <AuthInfo />
       </AuthProvider>
 
-      <AuthInfo />
+      {/* <AuthInfo /> */}
     </div>
   );
 }
