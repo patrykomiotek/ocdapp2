@@ -32,37 +32,37 @@ export const useApi = <T>(endpoint: string) => {
   });
 
   useEffect(() => {
-    void fetch(`${BASE_URL}${endpoint}`, {
-      headers: {
-        Authorization: TOKEN,
-        "content-type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        setApiResponse({
-          data: undefined,
-          isLoading: false,
-          isError: true,
+    const loadData = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}${endpoint}`, {
+          headers: {
+            Authorization: TOKEN,
+            "content-type": "application/json",
+          },
         });
-        throw new Error("Oh no!");
-      })
-      .then((data: T) => {
+
+        if (!response.ok) {
+          setApiResponse({
+            data: undefined,
+            isLoading: false,
+            isError: true,
+          });
+          throw new Error("Oh no!");
+        }
+
+        const responseData = (await response.json()) as T;
         setApiResponse({
-          data: data,
+          data: responseData,
           isLoading: false,
           isError: false,
         });
-      })
-      .finally(() => {
-        // setApiResponse({
-        //   data: apiResponse.data as T,
-        //   isLoading: false,
-        //   isError: false,
-        // });
-      });
+      } catch {
+        // any other error
+      }
+    };
+
+    void loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return apiResponse;
