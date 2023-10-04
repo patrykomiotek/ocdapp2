@@ -16,6 +16,7 @@ import { ViewPort } from "./components/ViewPort";
 import { Counter } from "./components/Counter";
 import { AuthInfo } from "./components/Auth";
 import { AuthContext, AuthProvider } from "./components/Auth/AuthContext";
+import { ThemeProvider } from "./components/Theme/ThemeContext";
 
 function App() {
   const [showCounter, setShowCounter] = useState(true);
@@ -55,9 +56,11 @@ function App() {
         Show / Hide
       </button> */}
       <h1>App component</h1>
-      <AuthProvider>
-        <AuthInfo />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <AuthInfo />
+        </AuthProvider>
+      </ThemeProvider>
 
       {/* <AuthInfo /> */}
     </div>
