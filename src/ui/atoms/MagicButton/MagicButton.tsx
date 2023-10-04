@@ -17,3 +17,5 @@ export const MagicButton = forwardRef(
     );
   }
 );
+
+MagicButton.displayName = "forwardRef (MagicButton)";
