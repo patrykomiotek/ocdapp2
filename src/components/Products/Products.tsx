@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useApi } from "../../hooks/useApi";
 
 interface ProductsDto {
   id: string;
@@ -14,32 +15,11 @@ interface DataResponse {
 }
 
 export const Products = () => {
-  const [data, setData] = useState<ProductsDto[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const { data, isLoading, isError } = useApi<DataResponse>("/products");
 
-  useEffect(() => {
-    void fetch("https://api.airtable.com/v0/appJ0votvrhmT0Sbq/products", {
-      headers: {
-        Authorization: `Bearer patVQ864y6eGr1CkQ.760719abde62320306c65daff180b15fdc943d7cbf5301dc552175a39969fa4f`,
-        "content-type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        setIsError(true);
-        throw new Error("Oh no!");
-      })
-      .then((data: DataResponse) => {
-        console.log(data);
-        setData(data.records);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+  // const { data, isLoading, isError } = useApi<ProductsDto[]>('/products');
+  // const { data, isLoading, isError } = useApi<CategoriesDto[]>('/categories');
+  // const { data, isLoading, isError } = useApi<ProductDto>('/product/123');
 
   return (
     <div>
@@ -47,7 +27,7 @@ export const Products = () => {
       {isLoading && <p>Loading...</p>}
       {isError && <p>Oh no!</p>}
 
-      {data.map((elem) => (
+      {data?.records.map((elem) => (
         <div key={elem.id}>
           {elem.fields.name} {elem.fields.price}
         </div>
