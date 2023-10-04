@@ -4,16 +4,36 @@ import { LoginFormRefs } from "./components/LoginForm/LoginFormRefs";
 import { Button } from "./ui/atoms/Button";
 import { Text } from "./ui/atoms/Text";
 import { Generator } from "./ui/molecules/Generator";
+import { MagicButton } from "./ui/atoms/MagicButton";
+import { MouseEventHandler, useEffect, useRef } from "react";
 
 function App() {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.style.backgroundColor = "red";
+      buttonRef.current.style.color = "white";
+    }
+  }, []);
+
+  const handleMouseEnter: MouseEventHandler<HTMLButtonElement> = () => {
+    const ref = buttonRef.current;
+    if (ref) {
+      ref.style.backgroundColor = "green";
+      ref.style.color = "black";
+    }
+  };
+
   return (
     <div>
+      <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} />
       {/* <Text>Today is <span>payday</span></Text> */}
       {/* <Text>Today is payday</Text> */}
       {/* <Button label="Click" /> */}
       {/* <Generator /> */}
       {/* <LoginForm /> */}
-      <LoginFormRefs />
+      {/* <LoginFormRefs /> */}
     </div>
   );
 }
