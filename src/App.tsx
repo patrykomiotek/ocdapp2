@@ -6,6 +6,7 @@ import { Text } from "./ui/atoms/Text";
 import { Generator } from "./ui/molecules/Generator";
 import { MagicButton } from "./ui/atoms/MagicButton";
 import { MouseEventHandler, useEffect, useRef } from "react";
+import { ViewPort } from "./components/ViewPort";
 
 function App() {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -37,7 +38,8 @@ function App() {
       {/* <Button label="Click" /> */}
       {/* <Generator /> */}
       {/* <LoginForm /> */}
-      <LoginFormRefs />
+      {/* <LoginFormRefs /> */}
+      <ViewPort />
     </div>
   );
 }
