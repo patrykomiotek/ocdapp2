@@ -25,15 +25,19 @@ function App() {
     }
   };
 
+  // const handleSumit = (data) => {
+  //   console.log(data);
+  // }
+
   return (
     <div>
-      <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} />
+      {/* <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} /> */}
       {/* <Text>Today is <span>payday</span></Text> */}
       {/* <Text>Today is payday</Text> */}
       {/* <Button label="Click" /> */}
       {/* <Generator /> */}
       {/* <LoginForm /> */}
-      {/* <LoginFormRefs /> */}
+      <LoginFormRefs />
     </div>
   );
 }

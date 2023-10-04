@@ -1,6 +1,11 @@
 import { FormEventHandler, useEffect, useRef } from "react";
 import { Input } from "../../ui/molecules/Input/Input";
 
+type Props = {
+  // onSubmit: (data: ) => void;
+};
+
+// export const LoginFormRefs = ({ onSubmit }: Props) => {
 export const LoginFormRefs = () => {
   const emailFieldRef = useRef<HTMLInputElement>(null);
   const passwordFieldRef = useRef<HTMLInputElement>(null);
@@ -14,6 +19,13 @@ export const LoginFormRefs = () => {
 
   const handleSubmit: FormEventHandler = (event) => {
     event.preventDefault();
+    // prop prom parent
+    // onSubmit({
+    //   email: emailFieldRef.current?.value,
+    //   password: passwordFieldRef.current?.value,
+    //   language: languageFieldRef.current?.value,
+    // });
+
     console.log({
       email: emailFieldRef.current?.value,
       password: passwordFieldRef.current?.value,
