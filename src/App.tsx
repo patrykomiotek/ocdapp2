@@ -14,9 +14,7 @@ import { AuthContext } from "./components/Auth/AuthContext";
 function App() {
   const [showCounter, setShowCounter] = useState(true);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [authState, setAuthState] = useState({
-    isLogged: false,
-  });
+  const [authState, setAuthState] = useState(false);
 
   useEffect(() => {
     if (buttonRef.current) {
@@ -51,7 +49,12 @@ function App() {
       <button onClick={() => setShowCounter((value) => !value)}>
         Show / Hide
       </button> */}
-      <AuthContext.Provider value={authState}>
+      <AuthContext.Provider
+        value={{
+          isLogged: authState,
+          toggleIsLogged: setAuthState,
+        }}
+      >
         <AuthInfo />
       </AuthContext.Provider>
     </div>
