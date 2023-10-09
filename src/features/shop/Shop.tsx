@@ -2,6 +2,7 @@ import { Product } from "./Product";
 import type { ProductDto } from "./types";
 import { ShoppingCart } from ".";
 import { ShopContextProvider } from "./ShopContext";
+import { Link } from "react-router-dom";
 
 export const Shop = () => {
   const product: ProductDto = {
@@ -11,11 +12,9 @@ export const Shop = () => {
 
   return (
     <div>
-      <ShopContextProvider>
-        <Product product={product} />
-        {/* <Product product={product} onAddToBasket={() => handleAddToBasket(product)} /> */}
-        <ShoppingCart />
-      </ShopContextProvider>
+      <Product product={product} />
+      {/* <Product product={product} onAddToBasket={() => handleAddToBasket(product)} /> */}
+      <Link to="/basket">Go to basket</Link>
     </div>
   );
 };

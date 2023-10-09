@@ -19,7 +19,35 @@ import { AuthContext, AuthProvider } from "./components/Auth/AuthContext";
 import { ThemeProvider } from "./components/Theme/ThemeContext";
 import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
 import { Products } from "./components/Products";
-import { Shop } from "./features/shop";
+import { Shop, ShoppingCart } from "./features/shop";
+import {
+  createBrowserRouter,
+  BrowserRouter as Router,
+  RouterProvider,
+} from "react-router-dom";
+import { ShopContextProvider } from "./features/shop/ShopContext";
+
+{
+  /* <a href="/">Home</a>
+<a href="/basket">Basket</a>
+
+document.getElementsByName('a')
+clickListener = (event) => {
+  event.preventDefault();
+  history.push('/basket')
+} */
+}
+
+const routes = createBrowserRouter([
+  {
+    path: "/",
+    element: <Shop />,
+  },
+  {
+    path: "/basket",
+    element: <ShoppingCart />,
+  },
+]);
 
 function App() {
   const [showCounter, setShowCounter] = useState(true);
@@ -69,7 +97,9 @@ function App() {
       <ErrorBoundary fallback={<p>Oh no!</p>}>
         <AuthInfo />
       </ErrorBoundary> */}
-      <Shop />
+      <ShopContextProvider>
+        <RouterProvider router={routes} />
+      </ShopContextProvider>
     </div>
   );
 }

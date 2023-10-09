@@ -40,6 +40,8 @@ export const ShopContextProvider = ({
   );
 };
 
+// ShopContextProvider.displayName = "Trololo";
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const useShopContext = () => {
   const context = useContext(ShopContext);
