@@ -28,6 +28,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ShopContextProvider } from "./features/shop/ShopContext";
+import { CreateProductForm } from "./features/shop/CreateProductForm";
 
 {
   /* <a href="/">Home</a>
@@ -48,6 +49,10 @@ const routes = createBrowserRouter([
   {
     path: "/basket",
     element: <ShoppingCart />,
+  },
+  {
+    path: "/create",
+    element: <CreateProductForm />,
   },
 ]);
 
