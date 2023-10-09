@@ -25,6 +25,8 @@ import {
   BrowserRouter as Router,
   RouterProvider,
 } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ShopContextProvider } from "./features/shop/ShopContext";
 
 {
@@ -48,6 +50,8 @@ const routes = createBrowserRouter([
     element: <ShoppingCart />,
   },
 ]);
+
+const queryClient = new QueryClient();
 
 function App() {
   const [showCounter, setShowCounter] = useState(true);
@@ -97,9 +101,12 @@ function App() {
       <ErrorBoundary fallback={<p>Oh no!</p>}>
         <AuthInfo />
       </ErrorBoundary> */}
-      <ShopContextProvider>
-        <RouterProvider router={routes} />
-      </ShopContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <ShopContextProvider>
+          <RouterProvider router={routes} />
+        </ShopContextProvider>
+        <ReactQueryDevtools initialIsOpen={true} />
+      </QueryClientProvider>
     </div>
   );
 }

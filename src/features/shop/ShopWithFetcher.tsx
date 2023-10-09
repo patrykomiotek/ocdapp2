@@ -1,27 +1,35 @@
+import { Product } from "./Product";
 import type { ProductDto } from "./types";
+import { ShoppingCart } from ".";
+import { ShopContextProvider } from "./ShopContext";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import { addProductToBasket, fetchProducts } from "./airtable";
-import { useQuery } from "@tanstack/react-query";
 
 export const Shop = () => {
-  const {
-    data: products,
-    isError,
-    isLoading,
-  } = useQuery(["products"], fetchProducts);
+  const [products, setProducts] = useState<ProductDto[] | null>(null);
+
+  useEffect(() => {
+    // fetch
+    // .then -> (response, reject) [new Promise((resolve, reject)]
+    // .then -> (response, reject)
+
+    const loadData = async () => {
+      try {
+        const products = await fetchProducts();
+
+        console.log({ products });
+        setProducts(products);
+      } catch {
+        /* empty */
+      }
+    };
+    void loadData();
+  }, []);
 
   const handleAddToBasket = (id: ProductDto["id"]) => () => {
     void addProductToBasket(id);
   };
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (isError) {
-    return <p>Error...</p>;
-  }
 
   return (
     <div>
