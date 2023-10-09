@@ -1,10 +1,17 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
 
-type CreateProductDto = {
-  name: string;
-  price: number;
-  description: string;
-};
+const schema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  price: z
+    .number()
+    .min(1, { message: "Price is required" })
+    .max(100, { message: "Too expensive!" }),
+  description: z.string().min(1, { message: "Description is required" }),
+});
+
+type CreateProductDto = z.infer<typeof schema>;
 
 export const CreateProductForm = () => {
   const {
@@ -12,7 +19,9 @@ export const CreateProductForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<CreateProductDto>();
+  } = useForm<CreateProductDto>({
+    resolver: zodResolver(schema),
+  });
 
   const onSubmit: SubmitHandler<CreateProductDto> = (data) => {
     console.log(data);
@@ -36,7 +45,7 @@ export const CreateProductForm = () => {
           <input
             id="price"
             type="number"
-            {...register("price", { required: true })}
+            {...register("price", { required: true, valueAsNumber: true })}
           />
           {errors.price && <span>{errors.price.message}</span>}
         </div>
