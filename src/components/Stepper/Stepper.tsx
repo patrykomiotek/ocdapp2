@@ -1,3 +1,4 @@
+import { Menu } from "@ui/molecules/Menu";
 import { KeyboardEventHandler, useReducer } from "react";
 
 const initialState = {
@@ -53,6 +54,7 @@ export const Stepper = () => {
   return (
     <>
       <div>
+        <Menu />
         <button onClick={() => dispatch(decrement)}>-</button>
         <span>{state.count}</span>
         <button onClick={() => dispatch(increment)}>+</button>

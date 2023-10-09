@@ -6,7 +6,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ShopContextProvider } from "./features/shop/ShopContext";
 import { CreateProductForm } from "./features/shop/CreateProductForm";
-import { Stepper } from "./components/Stepper/Stepper";
+import { Paths } from "@consts/router.paths";
+import { Layout } from "@ui/molecules";
+import ErrorPage from "@pages/ErrorPage";
+import { Shop } from "@features/shop/Shop";
+import { LoginFormRefs } from "@components/LoginForm/LoginFormRefs";
 
 {
   /* <a href="/">Home</a>
@@ -21,17 +25,30 @@ clickListener = (event) => {
 
 const routes = createBrowserRouter([
   {
-    path: "/",
-    element: <Stepper />,
-    // element: <Shop />,
-  },
-  {
-    path: "/basket",
-    element: <ShoppingCart />,
-  },
-  {
-    path: "/create",
-    element: <CreateProductForm />,
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: Paths.HOME,
+        element: <Shop />,
+      },
+      {
+        path: Paths.BASKET,
+        element: <ShoppingCart />,
+      },
+      {
+        path: Paths.CREATE_PRODUCT,
+        element: <CreateProductForm />,
+      },
+      {
+        path: Paths.PRODUCTS,
+        element: <Shop />,
+      },
+      {
+        path: Paths.LOGIN,
+        element: <LoginFormRefs />,
+      },
+    ],
   },
 ]);
 

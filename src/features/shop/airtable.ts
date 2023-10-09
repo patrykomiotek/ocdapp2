@@ -31,6 +31,8 @@ export const fetchProducts = (): Promise<ProductDto[]> => {
           } catch {
             /* empty */
             console.error("invalid: ", elem);
+            // sentry.log(); // invalid object structure
+
             return [];
           }
         })

@@ -1,52 +1,86 @@
-// import { CSSProperties } from "react";
+import type { ComponentProps } from "react";
+import clsx from "clsx";
 
-import { ComponentProps } from "react";
-
-// type SomeProperties = Pick<CSSProperties, "color" | "backgroundColor">;
-
+// colors from palette: https://flatuicolors.com/palette/defo
+// to demonstrate there can be also color a set
+// 💡 we can also create colors using Record utility type but need to specify all keys
+// const colors: Record<'turquise' | 'emerald', string> = {
 const colors = {
+  turquise: "#1abc9c",
   emerald: "#2ecc71",
+  "peter-river": "#3498db",
   amethyst: "#9b59b6",
+  "wet-asphalt": "#34495e",
+  "green-sea": "#16a085",
+  nephritis: "#16a085",
+  "belize-hol": "#2980b9",
+  wisteria: "#8e44ad",
+  midnight: "#2c3e50",
+  "sun-flower": "#f1c40f",
+  carrot: "#e67e22",
   alizarin: "#e74c3c",
+  clouds: "#ecf0f1",
+  concrete: "#95a5a6",
+  orange: "#f39c12",
+  pumpkin: "#d35400",
+  pomegranate: "#c0392b",
+  silver: "#bdc3c7",
+  asbestos: "#7f8c8d",
 };
 
-// @ts-expect-error
-enum COLORS {
-  EMERALD = "#2ecc71",
-  AMETHYST = "#9b59b6",
-}
-
-type Color = keyof typeof colors;
-// type ColorType = Record<Color, string>
+type ColorType = keyof typeof colors;
 
 type Props = {
   label: string;
-  color?: Color;
-  bgColor?: Color;
+  color?: ColorType;
+  bgColor?: ColorType;
+  className?: string;
+  // onClick: () => void // ⛔️ avoid using void when unecessary
+  // onClick?: MouseEventHandler<HTMLButtonElement> // ✅ better
 };
 
 export const Button = ({
   label,
-  color = "alizarin",
-  bgColor = "amethyst",
+  bgColor,
+  color,
+  onClick,
+  className,
   ...rest
 }: ComponentProps<"button"> & Props) => {
-  const buttonStyles = {
-    color: colors[color], // color
-    backgroundColor: colors[bgColor],
-  };
+  // Similar solutions are:
+  // 1️⃣ using defined Props which should contain all needed props
+  // }: Props) => {
+  // 2️⃣ using only onClick props from defined props together with our custom props
+  // Pick<ComponentProps<'button'>, 'onClick'> & Props) => {
+  // 3️⃣ using destructuring assignment
+  // export const Button = ({ label, bgColor, color, onClick }: Props) => {
+
+  // 💡 wee need to
+  const _color = color ? colors[color] : "";
+  const _bgColor = bgColor ? colors[bgColor] : "";
+
+  const classes = clsx(
+    "px-4 py-1",
+    "text-sm text-blue-600",
+    "font-semibold",
+    "rounded-full border border-blue-200",
+    "hover:text-white hover:bg-blue-600 hover:border-transparent",
+    "focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2",
+    "dark:text-blue-200",
+    className
+  );
 
   return (
-    <button style={buttonStyles} {...rest}>
+    <button
+      onClick={onClick}
+      className={classes}
+      style={{
+        color: _color,
+        backgroundColor: _bgColor,
+      }}
+      {...rest}
+    >
       {label}
     </button>
   );
 };
-
-{
-  /* <Button color="amethyst" /> */
-}
-
-{
-  /* <Button color={COLORS.AMETHYST} /> */
-}
