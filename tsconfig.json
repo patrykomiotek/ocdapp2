@@ -1,5 +1,20 @@
 {
   "compilerOptions": {
+    "types": ["node", "@testing-library/jest-dom", "vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@ui/*": ["src/ui/*"],
+      "@consts/*": ["src/consts/*"],
+      "@atoms/*": ["src/ui/atoms/*"],
+      "@molecules/*": ["src/ui/molecules/*"],
+      "@organisms/*": ["src/ui/organisms/*"],
+      "@pages/*": ["src/pages/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@stories/*": ["src/stories/*"],
+      "@services/*": ["src/services/*"],
+      "@features/*": ["src/features/*"]
+    },
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -14,12 +29,16 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Decorators and class validator */
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

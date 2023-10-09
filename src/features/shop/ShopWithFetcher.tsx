@@ -1,9 +1,6 @@
-import { Product } from "./Product";
 import type { ProductDto } from "./types";
-import { ShoppingCart } from ".";
-import { ShopContextProvider } from "./ShopContext";
 import { Link } from "react-router-dom";
-import { MouseEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { addProductToBasket, fetchProducts } from "./airtable";
 
 export const Shop = () => {

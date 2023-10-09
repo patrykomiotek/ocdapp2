@@ -1,30 +1,7 @@
 import "./App.css";
-import { LoginForm } from "./components/LoginForm";
-import { LoginFormRefs } from "./components/LoginForm/LoginFormRefs";
-import { Button } from "./ui/atoms/Button";
-import { Text } from "./ui/atoms/Text";
-import { Generator } from "./ui/molecules/Generator";
-import { MagicButton } from "./ui/atoms/MagicButton";
-import {
-  MouseEventHandler,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { ViewPort } from "./components/ViewPort";
-import { Counter } from "./components/Counter";
-import { AuthInfo } from "./components/Auth";
-import { AuthContext, AuthProvider } from "./components/Auth/AuthContext";
-import { ThemeProvider } from "./components/Theme/ThemeContext";
-import { ErrorBoundary } from "./components/ErrorBoundary/ErrorBoundary";
-import { Products } from "./components/Products";
-import { Shop, ShoppingCart } from "./features/shop";
-import {
-  createBrowserRouter,
-  BrowserRouter as Router,
-  RouterProvider,
-} from "react-router-dom";
+import { MouseEventHandler, useEffect, useRef } from "react";
+import { ShoppingCart } from "./features/shop";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ShopContextProvider } from "./features/shop/ShopContext";
@@ -61,7 +38,6 @@ const routes = createBrowserRouter([
 const queryClient = new QueryClient();
 
 function App() {
-  const [showCounter, setShowCounter] = useState(true);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -71,6 +47,7 @@ function App() {
     }
   }, []);
 
+  // @ts-expect-error
   const handleMouseEnter: MouseEventHandler<HTMLButtonElement> = () => {
     const ref = buttonRef.current;
     if (ref) {

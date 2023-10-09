@@ -1,6 +1,6 @@
 import { FormEventHandler, useRef } from "react";
 import { Input } from "../../ui/molecules/Input/Input";
-import { CreateProductDto, createProduct } from "../../services/products";
+import { CreateProductDto, createProduct } from "@services/products";
 
 export const CreateProduct = () => {
   const nameFieldRef = useRef<HTMLInputElement>(null);
@@ -9,6 +9,7 @@ export const CreateProduct = () => {
 
   const save = async (data: CreateProductDto) => {
     try {
+      // @ts-expect-error
       const response = await createProduct(data);
       // const responseData = await response.json() as ;
     } catch (e) {

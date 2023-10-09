@@ -1,9 +1,5 @@
 import { FormEventHandler, useEffect, useRef } from "react";
-import { Input } from "../../ui/molecules/Input/Input";
-
-type Props = {
-  // onSubmit: (data: ) => void;
-};
+import { Input } from "@ui/molecules";
 
 // export const LoginFormRefs = ({ onSubmit }: Props) => {
 export const LoginFormRefs = () => {

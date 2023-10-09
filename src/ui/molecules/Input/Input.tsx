@@ -1,5 +1,5 @@
 import { useId, type ComponentPropsWithRef, Ref, forwardRef } from "react";
-import { Label } from "../../atoms/Label/Label";
+import { Label } from "@ui/atoms";
 
 type Props = {
   label: string;

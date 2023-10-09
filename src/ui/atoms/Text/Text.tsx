@@ -1,5 +1,5 @@
 type Props = {
-  children: string; // React.ReactNode
+  children: string | string[]; // React.ReactNode
 };
 
 // export const Text = (props: Props) => {

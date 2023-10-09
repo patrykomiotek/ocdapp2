@@ -19,7 +19,7 @@ const api = axios.create({
 });
 
 export const createProduct = (data: CreateProductDto): Promise<Response> => {
-  return api.post<Product>(`/products`, {
+  return api.post(`/products`, {
     records: data,
   });
 

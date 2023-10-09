@@ -1,6 +1,5 @@
 import type { ProductDto } from "./types";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { addProductToBasket, fetchProducts } from "./airtable";
 import { useQuery } from "@tanstack/react-query";
 

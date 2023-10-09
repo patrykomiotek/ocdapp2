@@ -45,6 +45,7 @@ export const Stepper = () => {
   const handleChangeCount: KeyboardEventHandler<HTMLInputElement> = (event) => {
     // console.log(event.target);
     if (event.key.toLowerCase() === "enter") {
+      // @ts-expect-error
       dispatch({ type: ActionType.SET, payload: event.target.value });
     }
   };

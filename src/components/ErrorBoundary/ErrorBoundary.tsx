@@ -14,10 +14,12 @@ export class ErrorBoundary extends Component<Props, State> {
     hasError: false,
   };
 
+  // @ts-expect-error
   static getDerivedStateFromError(error: Error) {
     return { hasError: true };
   }
 
+  // @ts-expect-error
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // send to sentry
   }

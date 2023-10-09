@@ -77,11 +77,11 @@ export const useTheme = () => {
   return { theme, toggle, setLight, setDark };
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useThemeContext = () => {
   const context = useContext(ThemeContext);
+  console.log("inside useThemeContext", context);
   if (!context) {
-    throw new Error("Component should be placed inside ThemeProvider");
+    throw new Error("Oh no! You need to place component inside ThemeProvider");
   }
   return context;
 };
