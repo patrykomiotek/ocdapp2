@@ -1,9 +1,9 @@
 // import React from 'react'; // React.createElement
-import type { Product as ProductType } from "./types";
+import type { ProductDto } from "./types";
 
 type Props = {
-  product: ProductType;
-  addToBasket: (product: ProductType) => void;
+  product: ProductDto;
+  addToBasket: (product: ProductDto) => void;
 };
 
 export const Product = ({ product, addToBasket }: Props) => {
