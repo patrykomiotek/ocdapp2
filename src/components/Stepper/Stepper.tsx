@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { KeyboardEventHandler, useReducer } from "react";
 
 const initialState = {
   count: 0,
@@ -15,11 +15,12 @@ type State = typeof initialState;
 enum ActionType {
   INCREMENT = "INCREMENT",
   DECREMENT = "DECREMENT",
+  SET = "SET",
 }
 
 type Action = {
   type: ActionType;
-  payload?: Record<string, string>;
+  payload?: string;
 };
 
 const reducer = (state: State, action: Action) => {
@@ -28,6 +29,8 @@ const reducer = (state: State, action: Action) => {
       return { count: state.count + 1 };
     case ActionType.DECREMENT:
       return { count: state.count - 1 };
+    case ActionType.SET:
+      return { count: parseInt(action.payload || "", 10) };
     default:
       return state;
   }
@@ -39,11 +42,23 @@ const increment = { type: ActionType.INCREMENT };
 export const Stepper = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const handleChangeCount: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    // console.log(event.target);
+    if (event.key.toLowerCase() === "enter") {
+      dispatch({ type: ActionType.SET, payload: event.target.value });
+    }
+  };
+
   return (
-    <div>
-      <button onClick={() => dispatch(decrement)}>-</button>
-      <span>{state.count}</span>
-      <button onClick={() => dispatch(increment)}>+</button>
-    </div>
+    <>
+      <div>
+        <button onClick={() => dispatch(decrement)}>-</button>
+        <span>{state.count}</span>
+        <button onClick={() => dispatch(increment)}>+</button>
+      </div>
+      <div>
+        <input type="number" onKeyDown={handleChangeCount} />
+      </div>
+    </>
   );
 };
