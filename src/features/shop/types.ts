@@ -26,9 +26,10 @@ export type MoneyDto = z.infer<typeof Money>;
 // z.infer -> ProductDto
 
 // extendable
-const Product = z.object({
+export const ProductSchema = z.object({
+  id: z.string(),
   name: z.string(),
-  price: z.number(),
+  price: z.number().positive(),
 });
 
-export type ProductDto = z.infer<typeof Product>;
+export type ProductDto = z.infer<typeof ProductSchema>;
