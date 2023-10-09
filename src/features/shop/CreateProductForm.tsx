@@ -1,6 +1,7 @@
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm, type SubmitHandler, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
+import { Input } from "../../ui/molecules/Input/Input";
 
 const schema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
@@ -15,6 +16,7 @@ type CreateProductDto = z.infer<typeof schema>;
 
 export const CreateProductForm = () => {
   const {
+    control,
     register,
     handleSubmit,
     watch,
@@ -50,10 +52,10 @@ export const CreateProductForm = () => {
           {errors.price && <span>{errors.price.message}</span>}
         </div>
         <div>
-          <label htmlFor="description">Description</label>
-          <input
-            id="description"
-            {...register("description", { required: true })}
+          <Controller
+            name="description"
+            control={control}
+            render={({ field }) => <Input label="Description" {...field} />}
           />
           {errors.description && <span>{errors.description.message}</span>}
         </div>
