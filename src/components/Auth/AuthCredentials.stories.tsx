@@ -13,7 +13,7 @@ const meta = {
 } satisfies Meta<typeof AuthCredentials>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+// type Story = StoryObj<typeof meta>;
 
 // TODO: this component needs wrapper to pass refs logic
 export const Primary = () => (
