@@ -1,18 +1,9 @@
 // import React from 'react'; // React.createElement
-
-type Money = {
-  value: number;
-  currency: "PLN" | "EURO" | "PESOS";
-};
-
-type Product = {
-  name: string;
-  price: number;
-};
+import type { Product as ProductType } from "./types";
 
 type Props = {
-  product: Product;
-  addToBasket: (product: Product) => void;
+  product: ProductType;
+  addToBasket: (product: ProductType) => void;
 };
 
 export const Product = ({ product, addToBasket }: Props) => {
