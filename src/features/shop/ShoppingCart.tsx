@@ -1,13 +1,12 @@
-import { ProductDto } from "./types";
+import { useShopContext } from "./ShopContext";
 
-type Props = {
-  products: ProductDto[];
-  onRemove: (index: number) => void;
-};
+export const ShoppingCart = () => {
+  const context = useShopContext();
 
-export const ShoppingCart = ({ products, onRemove }: Props) => {
+  const products = context.products;
+
   const handleRemove = (index: number) => () => {
-    onRemove(index);
+    context.remove(index);
   };
 
   return (
