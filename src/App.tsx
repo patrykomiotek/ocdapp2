@@ -29,6 +29,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ShopContextProvider } from "./features/shop/ShopContext";
 import { CreateProductForm } from "./features/shop/CreateProductForm";
+import { Stepper } from "./components/Stepper/Stepper";
 
 {
   /* <a href="/">Home</a>
@@ -44,7 +45,8 @@ clickListener = (event) => {
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <Shop />,
+    element: <Stepper />,
+    // element: <Shop />,
   },
   {
     path: "/basket",
