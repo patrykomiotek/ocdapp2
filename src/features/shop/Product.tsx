@@ -1,17 +1,19 @@
 // import React from 'react'; // React.createElement
 import type { ProductDto } from "./types";
 
-type Props = {
+type Props = Readonly<{
   product: ProductDto;
-  addToBasket: (product: ProductDto) => void;
-};
+  onAddToBasket: (product: ProductDto) => void;
+}>;
 
-export const Product = ({ product, addToBasket }: Props) => {
+export const Product = ({ product, onAddToBasket }: Props) => {
+  // product = {};
+
   return (
     <div>
       <span>
         {product.name} {product.price}
-        <button onClick={() => addToBasket(product)}>Add to basket</button>
+        <button onClick={() => onAddToBasket(product)}>Add to basket</button>
       </span>
     </div>
   );
