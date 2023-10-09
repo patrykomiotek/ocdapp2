@@ -16,6 +16,7 @@ interface DataResponse {
 
 export const Products = () => {
   const { data, isLoading, isError } = useApi<DataResponse>("/products");
+  // const { data, isLoading, isError } = useApi<DataResponse>(fetchProducts);
 
   // const { data, isLoading, isError } = useApi<ProductsDto[]>('/products');
   // const { data, isLoading, isError } = useApi<CategoriesDto[]>('/categories');

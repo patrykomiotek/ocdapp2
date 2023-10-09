@@ -18,6 +18,8 @@ export const ShopContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  // TODO: addToBasket, remove and fetching data should use airtable
+  // TODO: add useEffect to fetch data
   const [products, setProducts] = useState<ProductDto[]>([]);
 
   const addToBasket = (product: ProductDto) => {

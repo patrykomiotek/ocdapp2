@@ -24,6 +24,8 @@ type ApiResponse<T> =
       isError: true;
     };
 
+type Fetcher<T> = string | (() => Promise<T>);
+
 export const useApi = <T>(endpoint: string) => {
   const [apiResponse, setApiResponse] = useState<ApiResponse<T>>({
     data: undefined,
