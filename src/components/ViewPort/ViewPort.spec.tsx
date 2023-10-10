@@ -1,4 +1,5 @@
 vi.mock("@hooks/useViewPort", () => ({
+  ...vi.importActual("@hooks/useViewPort"),
   useViewPort: vi.fn(),
 }));
 
