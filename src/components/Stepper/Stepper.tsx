@@ -1,5 +1,6 @@
 import { Menu } from "@ui/molecules/Menu";
 import { KeyboardEventHandler, useReducer } from "react";
+import { Helmet } from "react-helmet";
 
 const initialState = {
   count: 0,
@@ -53,6 +54,9 @@ export const Stepper = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Stepper</title>
+      </Helmet>
       <div>
         {/* <Menu /> */}
         <button onClick={() => dispatch(decrement)}>-</button>

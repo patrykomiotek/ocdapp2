@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { Helmet } from "react-helmet";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -29,34 +30,39 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        E-mail: {email}, Password: {password}, Language: {language}
-      </div>
-      <div>
-        <label htmlFor="email">E-mail</label>
-        <input id="email" type="email" onChange={handleChange(setEmail)} />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          onChange={handleChange(setPassword)}
-        />
-      </div>
-      <div>
-        <label htmlFor="language">Language</label>
-        <input
-          id="language"
-          type="text"
-          onChange={handleChange(setLanguage)}
-          value={language}
-        />
-      </div>
-      <div>
-        <button type="submit">Send</button>
-      </div>
-    </form>
+    <>
+      <Helmet>
+        <title>Login form</title>
+      </Helmet>
+      <form onSubmit={handleSubmit}>
+        <div>
+          E-mail: {email}, Password: {password}, Language: {language}
+        </div>
+        <div>
+          <label htmlFor="email">E-mail</label>
+          <input id="email" type="email" onChange={handleChange(setEmail)} />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            onChange={handleChange(setPassword)}
+          />
+        </div>
+        <div>
+          <label htmlFor="language">Language</label>
+          <input
+            id="language"
+            type="text"
+            onChange={handleChange(setLanguage)}
+            value={language}
+          />
+        </div>
+        <div>
+          <button type="submit">Send</button>
+        </div>
+      </form>
+    </>
   );
 };

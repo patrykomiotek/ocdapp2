@@ -2,6 +2,7 @@ import type { ProductDto } from "./types";
 import { Link } from "react-router-dom";
 import { addProductToBasket, fetchProducts } from "./airtable";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 
 export const Shop = () => {
   const {
@@ -24,6 +25,9 @@ export const Shop = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Shop</title>
+      </Helmet>
       {/* <Product product={product} /> */}
       {/* <Product product={product} onAddToBasket={() => handleAddToBasket(product)} /> */}
       <Link to="/basket">Go to basket</Link>
