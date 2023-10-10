@@ -1,8 +1,13 @@
 import { FormEventHandler, useEffect, useRef } from "react";
 import { Input } from "@ui/molecules";
+import type { FormData } from "@pages/LoginPage";
 
-// export const LoginFormRefs = ({ onSubmit }: Props) => {
-export const LoginFormRefs = () => {
+type Props = {
+  onSubmit: (data: FormData) => void;
+};
+
+export const LoginFormRefs = ({ onSubmit }: Props) => {
+  // export const LoginFormRefs = () => {
   const emailFieldRef = useRef<HTMLInputElement>(null);
   const passwordFieldRef = useRef<HTMLInputElement>(null);
   const languageFieldRef = useRef<HTMLInputElement>(null);
@@ -22,10 +27,15 @@ export const LoginFormRefs = () => {
     //   language: languageFieldRef.current?.value,
     // });
 
-    console.log({
-      email: emailFieldRef.current?.value,
-      password: passwordFieldRef.current?.value,
-      language: languageFieldRef.current?.value,
+    // console.log({
+    //   email: emailFieldRef.current?.value,
+    //   password: passwordFieldRef.current?.value,
+    //   language: languageFieldRef.current?.value,
+    // });
+    onSubmit({
+      email: emailFieldRef.current?.value || "",
+      password: passwordFieldRef.current?.value || "",
+      language: languageFieldRef.current?.value || "",
     });
   };
 

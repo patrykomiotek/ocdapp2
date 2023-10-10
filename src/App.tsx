@@ -16,6 +16,8 @@ import { Stepper } from "@components/Stepper/Stepper";
 import { AuthInfo } from "@components/Auth";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { AccountPage } from "@pages/AccountPage";
+import { LoginPage } from "@pages/LoginPage";
 
 {
   /* <a href="/">Home</a>
@@ -51,7 +53,7 @@ const routes = createBrowserRouter([
       },
       {
         path: Paths.LOGIN,
-        element: <LoginForm />,
+        element: <LoginPage />,
       },
       {
         path: Paths.STEPPER,
@@ -60,6 +62,10 @@ const routes = createBrowserRouter([
       {
         path: Paths.AUTH,
         element: <AuthInfo />,
+      },
+      {
+        path: Paths.ACCOUNT,
+        element: <AccountPage />,
       },
     ],
   },
@@ -104,7 +110,7 @@ function App() {
       <button onClick={() => setShowCounter((value) => !value)}>
         Show / Hide
       </button> */}
-      <h1>App component</h1>
+      {/* <h1>App component</h1> */}
       {/* <Products /> */}
       {/* <ThemeProvider>
         <AuthProvider>

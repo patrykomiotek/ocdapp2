@@ -7,4 +7,5 @@ export enum Paths {
   BASKET = "/basket",
   STEPPER = "/stepper",
   AUTH = "/auth",
+  ACCOUNT = "/account",
 }
