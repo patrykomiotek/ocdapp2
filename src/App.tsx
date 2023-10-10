@@ -1,5 +1,5 @@
 import "./App.css";
-import { MouseEventHandler, useEffect, useRef } from "react";
+import { MouseEventHandler, Profiler, useEffect, useRef } from "react";
 import { ShoppingCart } from "./features/shop";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -96,6 +96,25 @@ function App() {
   //   console.log(data);
   // }
 
+  const onRender = (
+    id,
+    phase,
+    actualDuration,
+    baseDuration,
+    startTime,
+    commitTime
+  ) => {
+    // Aggregate or log render timings...
+    console.log({
+      id,
+      phase,
+      actualDuration,
+      baseDuration,
+      startTime,
+      commitTime,
+    });
+  };
+
   return (
     <div>
       {/* <MagicButton ref={buttonRef} onMouseEnter={handleMouseEnter} /> */}
@@ -121,14 +140,16 @@ function App() {
       <ErrorBoundary fallback={<p>Oh no!</p>}>
         <AuthInfo />
       </ErrorBoundary> */}
-      <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
-          <ShopContextProvider>
-            <RouterProvider router={routes} />
-          </ShopContextProvider>
-          <ReactQueryDevtools initialIsOpen={true} />
-        </QueryClientProvider>
-      </Provider>
+      <Profiler id="Content" onRender={onRender}>
+        <Provider store={store}>
+          <QueryClientProvider client={queryClient}>
+            <ShopContextProvider>
+              <RouterProvider router={routes} />
+            </ShopContextProvider>
+            <ReactQueryDevtools initialIsOpen={true} />
+          </QueryClientProvider>
+        </Provider>
+      </Profiler>
     </div>
   );
 }

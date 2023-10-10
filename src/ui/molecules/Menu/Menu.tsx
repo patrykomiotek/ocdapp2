@@ -1,7 +1,8 @@
 import { Paths } from "@consts/router.paths";
 import { NavLink } from "@ui/atoms/NavLink";
+import { memo } from "react";
 
-export const Menu = () => {
+export const Menu = memo(() => {
   return (
     <ul className="flex list-none">
       <li className="mr-3">
@@ -30,4 +31,4 @@ export const Menu = () => {
       </li>
     </ul>
   );
-};
+});
