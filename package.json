@@ -11,7 +11,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "msw:update": "npx msw init public --no-save"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",

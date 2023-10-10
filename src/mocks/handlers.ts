@@ -1,17 +1,22 @@
 import { rest } from "msw";
 
-const API_URL = "https://api.airtable.com/v0/appPyGC48mGbBsYNq/products/:id";
+const API_URL = "https://api.airtable.com/v0/appJ0votvrhmT0Sbq/products?";
 
 export const handlers = [
   rest.get(API_URL, (_req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json({
-        id: "123",
-        fields: {
-          name: "Nowy produkt",
-          description: "opis produktu",
-        },
+        records: [
+          {
+            id: "123",
+            fields: {
+              name: "Nowy produkt",
+              price: 123,
+              description: "opis produktu",
+            },
+          },
+        ],
       })
 
       // ctx.status(200),
