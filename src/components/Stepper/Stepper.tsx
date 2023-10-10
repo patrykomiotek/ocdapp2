@@ -54,10 +54,12 @@ export const Stepper = () => {
   return (
     <>
       <div>
-        <Menu />
+        {/* <Menu /> */}
         <button onClick={() => dispatch(decrement)}>-</button>
         <span>{state.count}</span>
-        <button onClick={() => dispatch(increment)}>+</button>
+        <button data-testid="increment-btn" onClick={() => dispatch(increment)}>
+          +
+        </button>
       </div>
       <div>
         <input type="number" onKeyDown={handleChangeCount} />
