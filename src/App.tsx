@@ -13,6 +13,7 @@ import { Shop } from "@features/shop/Shop";
 import { LoginFormRefs } from "@components/LoginForm/LoginFormRefs";
 import { LoginForm } from "@components/LoginForm";
 import { Stepper } from "@components/Stepper/Stepper";
+import { AuthInfo } from "@components/Auth";
 
 {
   /* <a href="/">Home</a>
@@ -53,6 +54,10 @@ const routes = createBrowserRouter([
       {
         path: Paths.STEPPER,
         element: <Stepper />,
+      },
+      {
+        path: Paths.AUTH,
+        element: <AuthInfo />,
       },
     ],
   },

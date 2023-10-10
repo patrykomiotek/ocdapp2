@@ -22,6 +22,9 @@ export const Menu = () => {
       <li className="mr-3">
         <NavLink to={Paths.STEPPER}>Stepper</NavLink>
       </li>
+      <li className="mr-3">
+        <NavLink to={Paths.AUTH}>Auth</NavLink>
+      </li>
     </ul>
   );
 };

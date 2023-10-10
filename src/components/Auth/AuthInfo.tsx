@@ -1,10 +1,13 @@
 import { AuthCredentials } from ".";
+import { AuthProvider } from "./AuthContext";
 
 export const AuthInfo = () => {
   return (
     <div>
-      <h2>Auth info component</h2>
-      <AuthCredentials />
+      <AuthProvider>
+        <h2>Auth info component</h2>
+        <AuthCredentials />
+      </AuthProvider>
     </div>
   );
 };

@@ -6,4 +6,5 @@ export enum Paths {
   CREATE_PRODUCT = "/products/create",
   BASKET = "/basket",
   STEPPER = "/stepper",
+  AUTH = "/auth",
 }
