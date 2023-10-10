@@ -14,6 +14,6 @@ describe("Stepper component", () => {
 
     fireEvent.click(screen.getByText("-"));
     expect(screen.getByText("1")).toBeInTheDocument();
-    debug();
+    // debug();
   });
 });
