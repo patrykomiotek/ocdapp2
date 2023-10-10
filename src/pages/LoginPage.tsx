@@ -1,6 +1,9 @@
 import { LoginFormRefs } from "@components/LoginForm/LoginFormRefs";
+import { logIn } from "@services/users";
 import { Header } from "@ui/atoms";
 import { Helmet } from "react-helmet";
+import { useDispatch } from "react-redux";
+import { userLogInWithPayload } from "../user/userSlice";
 
 export type FormData = {
   email: string;
@@ -9,8 +12,15 @@ export type FormData = {
 };
 
 export const LoginPage = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (data: FormData) => {
     console.log("formData: ", data);
+
+    logIn(data).then((response) => {
+      const data = response.data;
+      dispatch(userLogInWithPayload({ email: data.email }));
+    });
   };
 
   return (
