@@ -19,6 +19,7 @@ export const LoginPage = () => {
 
     logIn(data).then((response) => {
       const data = response.data;
+      // parse
       dispatch(userLogInWithPayload({ email: data.email }));
     });
   };

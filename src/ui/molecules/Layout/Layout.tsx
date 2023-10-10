@@ -7,7 +7,8 @@ export const Layout = () => {
   return (
     <>
       <Menu />
-      <Outlet />
+      {/* {isLogged ? <Outlet /> : <Navigation to="" />} */}
+      {<Outlet />}
       <Footer />
     </>
   );
