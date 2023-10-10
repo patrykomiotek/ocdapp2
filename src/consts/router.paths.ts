@@ -5,4 +5,5 @@ export enum Paths {
   PRODUCT_DETAILS = "/products/:id",
   CREATE_PRODUCT = "/products/create",
   BASKET = "/basket",
+  STEPPER = "/stepper",
 }

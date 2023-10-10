@@ -19,6 +19,9 @@ export const Menu = () => {
       <li className="mr-3">
         <NavLink to={Paths.BASKET}>Basket</NavLink>
       </li>
+      <li className="mr-3">
+        <NavLink to={Paths.STEPPER}>Stepper</NavLink>
+      </li>
     </ul>
   );
 };

@@ -32,3 +32,11 @@ export const Secondary: Story = {
     bgColor: "midnight",
   },
 };
+
+export const White: Story = {
+  args: {
+    label: "Hello",
+    color: "clouds",
+    bgColor: "clouds",
+  },
+};

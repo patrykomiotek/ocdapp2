@@ -4,7 +4,9 @@ import { axe } from "jest-axe";
 
 describe("Button component", () => {
   it("should have no violations", async () => {
-    const { container } = render(<Button label="Click me" color="alizarin" />);
+    const { container } = render(
+      <Button label="Click me" color="clouds" bgColor="emerald" />
+    );
     // console.log(container);
 
     expect(await axe(container)).toHaveNoViolations();

@@ -11,6 +11,8 @@ import { Layout } from "@ui/molecules";
 import ErrorPage from "@pages/ErrorPage";
 import { Shop } from "@features/shop/Shop";
 import { LoginFormRefs } from "@components/LoginForm/LoginFormRefs";
+import { LoginForm } from "@components/LoginForm";
+import { Stepper } from "@components/Stepper/Stepper";
 
 {
   /* <a href="/">Home</a>
@@ -46,7 +48,11 @@ const routes = createBrowserRouter([
       },
       {
         path: Paths.LOGIN,
-        element: <LoginFormRefs />,
+        element: <LoginForm />,
+      },
+      {
+        path: Paths.STEPPER,
+        element: <Stepper />,
       },
     ],
   },
