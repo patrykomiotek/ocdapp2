@@ -14,6 +14,8 @@ import { LoginFormRefs } from "@components/LoginForm/LoginFormRefs";
 import { LoginForm } from "@components/LoginForm";
 import { Stepper } from "@components/Stepper/Stepper";
 import { AuthInfo } from "@components/Auth";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 {
   /* <a href="/">Home</a>
@@ -113,12 +115,14 @@ function App() {
       <ErrorBoundary fallback={<p>Oh no!</p>}>
         <AuthInfo />
       </ErrorBoundary> */}
-      <QueryClientProvider client={queryClient}>
-        <ShopContextProvider>
-          <RouterProvider router={routes} />
-        </ShopContextProvider>
-        <ReactQueryDevtools initialIsOpen={true} />
-      </QueryClientProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <ShopContextProvider>
+            <RouterProvider router={routes} />
+          </ShopContextProvider>
+          <ReactQueryDevtools initialIsOpen={true} />
+        </QueryClientProvider>
+      </Provider>
     </div>
   );
 }
